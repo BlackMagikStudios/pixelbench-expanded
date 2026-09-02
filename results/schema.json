@@ -1,0 +1,73 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "pixel-bench results",
+  "description": "Output of `pixelbench run`. See docs/RESULTS_FORMAT.md.",
+  "type": "object",
+  "required": ["pixelbench_version", "suite", "methods", "samples", "aggregate"],
+  "properties": {
+    "pixelbench_version": {"type": "string"},
+    "suite": {"type": "string", "description": "distortion suite version, e.g. v1"},
+    "severity": {"type": "number"},
+    "seed": {"type": "integer"},
+    "dataset": {
+      "type": "object",
+      "properties": {
+        "path": {"type": "string"},
+        "n_images": {"type": "integer"}
+      }
+    },
+    "methods": {"type": "array", "items": {"type": "string"}},
+    "n_inputs": {"type": "integer"},
+    "n_scored": {"type": "integer"},
+    "wall_s": {"type": "number"},
+    "aggregate": {
+      "type": "object",
+      "description": "Precomputed means/medians per method per category and overall.",
+      "required": ["categories", "directions", "by_method"],
+      "properties": {
+        "categories": {"type": "array", "items": {"type": "string"}},
+        "directions": {
+          "type": "object",
+          "description": "metric field -> 'higher' | 'lower' (which is better)",
+          "additionalProperties": {"enum": ["higher", "lower"]}
+        },
+        "by_method": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "description": "category name (or 'overall') -> {field: value, n: int}",
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": {"type": "number"}
+            }
+          }
+        }
+      }
+    },
+    "samples": {
+      "type": "array",
+      "description": "One entry per (image, category) input.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "image": {"type": "string"},
+          "category": {"type": "string"},
+          "severity": {"type": "number"},
+          "gt_cols": {"type": "integer"},
+          "gt_rows": {"type": "integer"},
+          "dist_w": {"type": "integer"},
+          "dist_h": {"type": "integer"},
+          "skip": {"type": "string", "description": "present if the input was skipped"},
+          "methods": {
+            "type": "object",
+            "description": "method name -> {metric field: value, sec, error?}",
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": {"type": ["number", "string"]}
+            }
+          }
+        }
+      }
+    }
+  }
+}

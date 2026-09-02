@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.eggs/
+.pytest_cache/
+.venv/
+venv/
+.venv*/
+
+# Credentials and local configuration
+.env
+.env.*
+.secrets/
+*.key
+*.pem
+
+# Model weights and private runtime artifacts
+*.ckpt
+*.onnx
+*.pt
+*.pth
+*.safetensors
+
+# External-service caches and generated corpora
+api_cache/
+retrodiffusion_cache/
+data/private/
+data/generated/
+
+# Run outputs (keep only the schema and directory documentation)
+results/*.json
+results/*.md
+results/*.log
+!results/schema.json
+!results/README.md
+
+# Generated preview/gallery images
+previews/
+outputs/

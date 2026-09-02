@@ -1,0 +1,124 @@
+{
+  "protocol": "bm-metric-validation-v1",
+  "rule": "Each retained primary metric must respond monotonically and in the documented direction to its targeted controlled perturbation.",
+  "all_pass": true,
+  "curves": [
+    {
+      "name": "Mean perceptual colour error",
+      "x_label": "Red-channel drift",
+      "metric": "delta_e00_mean",
+      "x": [
+        0,
+        10,
+        20,
+        30,
+        40
+      ],
+      "y": [
+        0.0,
+        1.251318335533142,
+        2.4263651371002197,
+        3.4945240020751953,
+        4.47212028503418
+      ],
+      "monotonic_pass": true
+    },
+    {
+      "name": "Tail perceptual colour error",
+      "x_label": "Red-channel drift",
+      "metric": "delta_e00_p95",
+      "x": [
+        0,
+        10,
+        20,
+        30,
+        40
+      ],
+      "y": [
+        0.0,
+        5.39015531539917,
+        10.163918495178223,
+        14.103310585021973,
+        17.33050537109375
+      ],
+      "monotonic_pass": true
+    },
+    {
+      "name": "Symmetric edge distance",
+      "x_label": "Translation (native pixels)",
+      "metric": "edge_assd_px",
+      "x": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "y": [
+        0.0,
+        0.176,
+        0.3666274169979695,
+        0.46810830241160145
+      ],
+      "monotonic_pass": true
+    },
+    {
+      "name": "Local edge-palette violations",
+      "x_label": "Blended edge coverage (%)",
+      "metric": "edge_palette_violation_rate",
+      "x": [
+        0,
+        20,
+        40,
+        60,
+        80,
+        100
+      ],
+      "y": [
+        0.0,
+        1.0416666666666665,
+        2.083333333333333,
+        3.125,
+        4.166666666666666,
+        5.208333333333334
+      ],
+      "suffix": "%",
+      "monotonic_pass": true
+    },
+    {
+      "name": "Weighted palette transport",
+      "x_label": "Deleted palette colours",
+      "metric": "palette_emd_de00",
+      "x": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "y": [
+        0.0,
+        18.298137664794922,
+        27.670621871948242,
+        33.387691497802734
+      ],
+      "monotonic_pass": true
+    },
+    {
+      "name": "Symmetric palette distance",
+      "x_label": "Deleted palette colours",
+      "metric": "palette_chamfer_de00",
+      "x": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "y": [
+        0.0,
+        9.149068832397461,
+        11.868287086486816,
+        16.693843841552734
+      ],
+      "monotonic_pass": true
+    }
+  ]
+}
